@@ -2,6 +2,14 @@ const express = require("express");
 const router = new express.Router();
 const contactsModel = require("../models/contactSchema");
 
+router.get("/", async (req, res) => {
+  try {
+    res.send(res.status(200).json({ msg: "Working.............." }));
+  } catch (e) {
+    return res.status(401).json({ error: "Something Went Wrong!!!" });
+  }
+});
+
 //-----------------------------------------------------------------------------
 //                          Get All Contacts
 //-----------------------------------------------------------------------------
@@ -37,7 +45,7 @@ router.post("/addContact", async (req, res) => {
   });
 
   if (phoneNumberExist) {
-    return res.status(401).json({ error: "Phone Number is already exists." });
+    return res.status(401).json({ msg: "Phone Number is already exists." });
   }
 
   try {
